@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>Resultados</title></head>
+<body>
+  <h1>Resultados de busca</h1>
+  <div id="results"></div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q') || '';
+    document.getElementById('results').innerHTML = 'Você pesquisou por: <em>' + q + '</em>';
+  </script>
+  <p><a href="index.html">Voltar</a></p>
+</body>
+</html>

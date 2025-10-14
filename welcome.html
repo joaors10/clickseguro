@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>Bem-vindo</title></head>
+<body>
+  <h1>Bem-vindo</h1>
+  <p>Observação: o parâmetro 'user' é refletido sem sanitização (XSS proposital).</p>
+  <div id="msg"></div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const user = params.get('user') || 'visitante';
+    document.getElementById('msg').innerHTML = '<strong>Olá, ' + user + '!</strong>';
+  </script>
+  <p><a href="index.html">Voltar</a></p>
+</body>
+</html>

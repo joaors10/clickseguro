@@ -1,0 +1,37 @@
+name: Testes de Segurança Automatizados - OWASP ZAP
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+    name: Scan da Aplicação com OWASP ZAP
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Iniciar servidor web local na porta 8080
+        run: python3 -m http.server 8080 &
+        
+      - name: Executar OWASP ZAP Baseline Scan e Falhar em Alertas
+        run: |
+          mkdir -p zap-reports
+          chmod 777 zap-reports
+          
+          
+          docker run --rm --network="host" \
+            -v ${GITHUB_WORKSPACE}/zap-reports:/zap/wrk/:rw \
+            ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
+            -t http://127.0.0.1:8080 \
+            -J zap_report.json \
+            -r zap_report.html \
+            -w 1
+
+      - name: Publicar relatório como artefato
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zap-security-report
+          path: zap-reports/

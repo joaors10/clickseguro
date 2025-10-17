@@ -1,11 +1,10 @@
-<<<<<<< HEAD
+
 # clickseguro
 Aplicação simples para testes automatizados de segurança com OWASP ZAP
 =======
-# ClickSeguro (versão sem Docker)
+# ClickSeguro 
 
-Projeto para a atividade de DevSecOps – Testes de Segurança Automatizados (FIAP).
-Aplicação estática com vulnerabilidades propositalmente simples (XSS reflexivo) para serem detectadas pelo OWASP ZAP.
+Projeto para a atividade de DevSecOps – Testes de Segurança Automatizados.
 
 ## Como usar localmente
 1. Extraia os arquivos e, na pasta do projeto, execute:
@@ -15,9 +14,9 @@ Aplicação estática com vulnerabilidades propositalmente simples (XSS reflexiv
 2. Acesse: http://localhost:8080
 
 ## Observação sobre o workflow
-O arquivo `.github/workflows/zap.yml` demonstra como rodar o ZAP no GitHub Actions sem usar Docker na aplicação:
+O arquivo `.github/workflows/zap.yml` demonstra como rodar o ZAP no GitHub Actions
 - Baixa e inicia o ZAP em modo daemon no runner
 - Sobe um servidor local (python http.server)
-- Executa varredura e gera `zap_report.html`
+- Executa varredura 
 - Falha o job se houver vulnerabilidades com severidade High ou Critical
->>>>>>> 177bb33 (first commit)
+
